@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Appium Tests">
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+    <test name="Exercise Tests">
+        <classes>
+            <class name="org.example.appiumtest.FormsTabScreenTest"/>
+            <class name="org.example.appiumtest.SwipeScreenTest"/>
+        </classes>
+    </test>
+</suite>
