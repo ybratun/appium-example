@@ -5,10 +5,10 @@ Welcome to Appium Exercise Automation
 This is Java, TestNG and Appium based project, created to learn and exercise automation of wdiodemoapp app.
 
 ***! SETUP DETAILS: !***
-[Set up your SSH key with 1Password](https://developer.1password.com/docs/ssh/get-started/)
+Set up your connection with gitlab / github using SSH key.
 
-Everything necessary to start with Appium and the project can be found in the confluence page
-(same as for FL Automation)  [Project Prerequisites](https://teamviewer.atlassian.net/wiki/spaces/ARS/folder/484507656?atlOrigin=eyJpIjoiYWJiMmYwNmE1ZTI4NGRlN2I0OWZjOTkyMGY4NzQ5NmIiLCJwIjoiYyJ9)
+Everything necessary to start with Appium and the project 
+- Install npm, IntelliJ
 
 - Clone & Open the Project in IntelliJ
 - Build the Project 
