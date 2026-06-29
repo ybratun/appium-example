@@ -32,4 +32,8 @@ public class NavigationBarScreen extends BaseScreen {
         waitUntilElementIsClickable(dragTab);
         click(dragTab);
     }
+
+    public boolean isDragAndDropTabSelected(){
+        return dragTab.isSelected();
+    }
 }

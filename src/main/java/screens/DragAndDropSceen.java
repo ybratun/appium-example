@@ -2,8 +2,9 @@ package screens;
 
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
-public class DragAndDropSceen {
+public class DragAndDropSceen extends BaseScreen{
 
     @AndroidFindBy(accessibility = "Drag-drop-screen")
     WebElement dragNDropScreen;
@@ -70,4 +71,28 @@ public class DragAndDropSceen {
 
     @AndroidFindBy(accessibility = "button-Retry")
     WebElement retryBtn;
+
+    public void dragAndDropElement(WebElement sourceElement, WebElement targetElement) {
+        // Instantiate the Actions class
+        Actions actions = new Actions(driver);
+
+        // Perform the drag and drop sequence
+        //actions.dragAndDrop(sourceElement, targetElement).perform();
+
+        actions.clickAndHold(sourceElement)
+                .moveToElement(targetElement)
+                .release(targetElement)
+                .build()
+                .perform();
+    }
+
+    public boolean greetingMessageShown(){
+        waitUntilElementIsVisible(congratsMsg);
+        return congratsMsg.isDisplayed();
+    }
+
+    public void tapOnRetry(){
+        waitUntilElementIsClickable(retryBtn).click();
+    }
 }
+
