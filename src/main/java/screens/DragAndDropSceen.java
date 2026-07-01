@@ -1,8 +1,13 @@
 package screens;
 
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DragAndDropSceen extends BaseScreen{
 
@@ -11,6 +16,9 @@ public class DragAndDropSceen extends BaseScreen{
 
     @AndroidFindBy(accessibility = "renew")
     WebElement refreshBtn;
+
+    @AndroidFindBy(accessibility = "drop-l")
+    private List<WebElement> droplList;
 
     @AndroidFindBy(accessibility = "drop-l1")
     WebElement cell11;
@@ -93,6 +101,27 @@ public class DragAndDropSceen extends BaseScreen{
 
     public void tapOnRetry(){
         waitUntilElementIsClickable(retryBtn).click();
+    }
+    // Inside your Test class:
+    public void runDragAndDropTest(AppiumDriver driver) {
+        int totalCount = 3; // l1, l2, l3
+
+        List<WebElement> dragList = new ArrayList<>();
+        List<WebElement> cellList = new ArrayList<>();
+
+        // Populate the lists based on Accessibility ID patterns
+        for (int i = 1; i <= totalCount; i++) {
+            dragList.add(driver.findElement(AppiumBy.accessibilityId("drag-l" +  + i)));
+            cellList.add(driver.findElement(AppiumBy.accessibilityId("cell-l" + i)));
+        }
+
+        // Loop through the lists simultaneously by index to perform the action
+        Actions actions = new Actions(driver);
+        for (int i = 0; i < dragList.size(); i++) {
+            actions.dragAndDrop(dragList.get(i), cellList.get(i))
+                    .build()
+                    .perform();
+        }
     }
 }
 
