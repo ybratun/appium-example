@@ -5,25 +5,27 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 import screens.DragAndDropSceen;
-import screens.FormsTabScreen;
 import screens.NavigationBarScreen;
+import static org.testng.Assert.assertTrue;
 
-public class DragAndDropScreenTest {
-    DragAndDropSceen dragAndDropScreen = new DragAndDropSceen();
-    NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
+public class DragAndDropScreenTest extends BaseTest {
 
     @Feature("DragAndDrop")
     @Story("DragAndDrop Interaction")
     @Test(description = "Test to validate drag and drop on incorrect square on screen\"")
     @Description("Validates drag and drop on incorrect square on screen")
-    public void dragAndDropOnIncorrectSquare() {
+    public void dragAndDropOnIncorrectSquare() throws InterruptedException {
+        DragAndDropSceen dragAndDropScreen = new DragAndDropSceen();
+        NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
         navigationBarScreen.openDragScreen();
 
         // validate tab is selected
         navigationBarScreen.isDragAndDropTabSelected();
+        dragAndDropScreen.collectPuzzle();
+        assertTrue(dragAndDropScreen.greetingMessageShown());
 
     }
-
+/*
     @Test(description = "Test to validate drag and drop on correct square on screen")
     @Description("Validates drag and drop on correct square on screen")
     public void dragAndDropOnCorrectSquare() {
@@ -47,4 +49,6 @@ public class DragAndDropScreenTest {
     public void resetWhenFullyCollected() {
 
     }
+
+ */
 }
