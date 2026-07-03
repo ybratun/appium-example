@@ -25,30 +25,33 @@ public class DragAndDropScreenTest extends BaseTest {
         assertTrue(dragAndDropScreen.greetingMessageShown());
 
     }
-/*
-    @Test(description = "Test to validate drag and drop on correct square on screen")
-    @Description("Validates drag and drop on correct square on screen")
-    public void dragAndDropOnCorrectSquare() {
-
-    }
 
     @Test(description = "Test to validate congratulation view is shown when puzzled correctly")
     @Description("Validates congratulation view is shown when puzzled correctly")
-    public void congratulationViewIsShownWhenPuzzledCorrectly() {
+    public void congratulationViewIsShownWhenPuzzledCorrectly() throws InterruptedException {
+        DragAndDropSceen dragAndDropScreen = new DragAndDropSceen();
+        NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
+        navigationBarScreen.openDragScreen();
+
+        // validate tab is selected
+        navigationBarScreen.isDragAndDropTabSelected();
+        dragAndDropScreen.collectPuzzle();
+        assertTrue(dragAndDropScreen.greetingMessageShown());
 
     }
 
     @Test(description = "Test to validate possibility to reset puzzle when not fully collected")
     @Description("Validates possibility to reset puzzle when not fully collected")
-    public void resetWhenNotFullyCollected() {
+    public void resetWhenNotFullyCollected() throws InterruptedException {
+        DragAndDropSceen dragAndDropScreen = new DragAndDropSceen();
+        NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
+        navigationBarScreen.openDragScreen();
+
+        // validate tab is selected
+        navigationBarScreen.isDragAndDropTabSelected();
+        dragAndDropScreen.collectPuzzle();
+        dragAndDropScreen.tapOnRetry();
+        assertTrue(dragAndDropScreen.titleIsVisible());
 
     }
-
-    @Test(description = "Test to validate possibility to reset puzzle when fully collected")
-    @Description("Validates possibility to reset puzzle when fully collected")
-    public void resetWhenFullyCollected() {
-
-    }
-
- */
 }

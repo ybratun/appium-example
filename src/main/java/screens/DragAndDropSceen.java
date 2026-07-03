@@ -28,6 +28,9 @@ public class DragAndDropSceen extends BaseScreen{
     @AndroidFindBy(accessibility = "button-Retry")
     WebElement retryBtn;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Drag and Drop']")
+    WebElement dragAndDropTitle;
+
     public boolean greetingMessageShown(){
         waitUntilElementIsVisible(congratsMsg);
         return congratsMsg.isDisplayed();
@@ -35,6 +38,11 @@ public class DragAndDropSceen extends BaseScreen{
 
     public void tapOnRetry(){
         waitUntilElementIsClickable(retryBtn).click();
+    }
+
+    public boolean titleIsVisible(){
+        waitUntilElementIsVisible(dragAndDropTitle);
+      return dragAndDropTitle.isDisplayed();
     }
 
     List<WebElement> dragList = new ArrayList<>();
