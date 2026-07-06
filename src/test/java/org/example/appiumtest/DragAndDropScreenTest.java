@@ -12,7 +12,7 @@ public class DragAndDropScreenTest extends BaseTest {
 
     @Feature("DragAndDrop")
     @Story("DragAndDrop Interaction")
-    @Test(description = "Test to validate drag and drop on incorrect square on screen\"")
+    @Test(description = "Test to validate drag and drop on incorrect square on screen")
     @Description("Validates drag and drop on incorrect square on screen")
     public void dragAndDropOnIncorrectSquare() throws InterruptedException {
         DragAndDropSceen dragAndDropScreen = new DragAndDropSceen();
