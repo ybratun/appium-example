@@ -15,6 +15,9 @@ public class NavigationBarScreen extends BaseScreen {
     @AndroidFindBy (xpath = "//android.view.View[@content-desc='Drag']")
     WebElement dragTab;
 
+    @AndroidFindBy (accessibility = "Login")
+    WebElement loginTab;
+
     public void openFormsScreen()  {
         waitUntilElementIsClickable(formsTab);
         click(formsTab);
@@ -35,5 +38,10 @@ public class NavigationBarScreen extends BaseScreen {
 
     public boolean isDragAndDropTabSelected(){
         return dragTab.isSelected();
+    }
+
+    public void openLoginScreen()  {
+        waitUntilElementIsClickable(loginTab);
+        click(loginTab);
     }
 }

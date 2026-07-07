@@ -26,21 +26,60 @@ public class LoginScreen extends BaseScreen{
     @AndroidFindBy(accessibility = "button-SIGN UP")
     WebElement signUpBtn;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Please enter a valid email address']")
+    WebElement invalidEmailMsg;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Please enter at least 8 characters']")
+    WebElement invalidPasswordMsg;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Please enter the same password']")
+    WebElement invalidPasswordRepeat;
+
+    @AndroidFindBy(accessibility = "button-SIGN UP")
+    WebElement successfulDialogLayout;
+
+    @AndroidFindBy(id = "android:id/button1")
+    WebElement okBtnOnSuccessMsg;
+
+    @AndroidFindBy(id = "android:id/message") // Login -> "You are logged in!"     SignUp -> "You successfully signed up!"
+    WebElement successfulnMsgText;
+
     public boolean loginTabShown(){
         waitUntilElementIsVisible(loginTab);
         return loginTab.isDisplayed();
     }
 
-    // validation that in email password and repeat password set stub text value
-    //Login
-    // enter invalid password
-    // enter invalid values into login
-    // enter expected format value into login and validate successful message
+    public boolean signUpTabShown(){
+        waitUntilElementIsVisible(signUpTab);
+        return signUpTab.isDisplayed();
+    }
 
-    // Sign up
-    // when email format is incorrect
-    // when password value incorrect
-    // message when repeated password is invalid
-    // successful sign up
+    public void setEmail(String inputEmail) {
+        email.click();
+        email.clear();  // if won't work try: element.sendKeys(Keys.chord(Keys.COMMAND, "a"), Keys.BACK_SPACE);
+        email.sendKeys(inputEmail);
+    }
+
+    String passwordValue;
+    public void setPassword(String inputPassword) {
+        password.click();
+        password.clear();
+        passwordValue = inputPassword;
+        password.sendKeys(inputPassword);
+    }
+
+    public void repeatPassword(){
+        confirmPassword.click();
+        password.clear();
+        confirmPassword.sendKeys(passwordValue);
+    }
+
+    public void clickLogin(){
+        loginBtn.click();
+    }
+    public void clickSignUp(){
+        signUpBtn.click();
+    }
+
 
 }
