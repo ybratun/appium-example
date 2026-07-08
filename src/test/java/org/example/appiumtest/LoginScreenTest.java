@@ -29,10 +29,48 @@ public class LoginScreenTest extends BaseTest{
     @Story("LoginTab Interaction")
     @Test(description = "Test to validate login Tab contains expected elements")
     @Description("Validates login Tab contains expected elements")
-    public void dragAndDropOnIncorrectSquare() throws InterruptedException {
+    public void possibleToMoveBetweenLoginSignUpTabs() throws InterruptedException {
         LoginScreen loginScreen = new LoginScreen();
         NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
 
+        navigationBarScreen.openLoginScreen();
+        assertTrue(loginScreen.loginTabShown());
+        loginScreen.clickOnSignUpTab();
+        assertTrue(loginScreen.signUpTabShown());
+        loginScreen.clickOnLoginTab();
+        assertTrue(loginScreen.loginTabShown());
 
+    }
+
+    @Feature("LoginTab")
+    @Story("LoginTab Interaction")
+    @Test(description = "Test to validate login Tab contains expected elements")
+    @Description("Validates login Tab contains expected elements")
+    public void suceessMsgOnCorrectLoginValues() throws InterruptedException {
+        LoginScreen loginScreen = new LoginScreen();
+        NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
+
+        navigationBarScreen.openLoginScreen();
+        loginScreen.setEmail("test@test.com");
+        loginScreen.setPassword("12345678");
+        loginScreen.clickLogin();
+        assertTrue(loginScreen.successMsgIsShown());
+    }
+
+    @Feature("LoginTab")
+    @Story("LoginTab Interaction")
+    @Test(description = "Test to validate login Tab contains expected elements")
+    @Description("Validates login Tab contains expected elements")
+    public void suceessMsgOnCorrectSignUpalues() throws InterruptedException {
+        LoginScreen loginScreen = new LoginScreen();
+        NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
+
+        navigationBarScreen.openLoginScreen();
+        loginScreen.clickOnSignUpTab();
+        loginScreen.setEmail("test@test.com");
+        loginScreen.setPassword("12345678");
+        loginScreen.setRepeatPassword();
+        loginScreen.clickSignUp();
+        assertTrue(loginScreen.successMsgIsShown());
     }
 }

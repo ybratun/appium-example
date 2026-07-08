@@ -39,7 +39,7 @@ public class LoginScreen extends BaseScreen{
     WebElement successfulDialogLayout;
 
     @AndroidFindBy(id = "android:id/button1")
-    WebElement okBtnOnSuccessMsg;
+    WebElement okBtnOnSuccessDialog;
 
     @AndroidFindBy(id = "android:id/message") // Login -> "You are logged in!"     SignUp -> "You successfully signed up!"
     WebElement successfulnMsgText;
@@ -52,6 +52,14 @@ public class LoginScreen extends BaseScreen{
     public boolean signUpTabShown(){
         waitUntilElementIsVisible(signUpTab);
         return signUpTab.isDisplayed();
+    }
+
+    public void clickOnLoginTab(){
+        loginTab.click();
+    }
+
+    public void clickOnSignUpTab(){
+        signUpTab.click();
     }
 
     public void setEmail(String inputEmail) {
@@ -68,17 +76,48 @@ public class LoginScreen extends BaseScreen{
         password.sendKeys(inputPassword);
     }
 
-    public void repeatPassword(){
+    public void setRepeatPassword(){
         confirmPassword.click();
         password.clear();
         confirmPassword.sendKeys(passwordValue);
     }
 
     public void clickLogin(){
+        waitUntilElementIsVisible(loginBtn);
         loginBtn.click();
     }
     public void clickSignUp(){
         signUpBtn.click();
+    }
+
+    public boolean successMsgIsShown() throws InterruptedException {
+        Thread.sleep(3000);
+        waitUntilElementIsVisible(successfulDialogLayout);
+        return successfulDialogLayout.isDisplayed();
+    }
+
+    public boolean emailErrorIsShown(){
+        waitUntilElementIsVisible(invalidEmailMsg);
+        return invalidEmailMsg.isDisplayed();
+    }
+
+    public boolean passwordErrorIsShown(){
+        waitUntilElementIsVisible(invalidPasswordMsg);
+        return invalidPasswordMsg.isDisplayed();
+    }
+
+    public boolean repeatPasswordErrorIsShown(){
+        waitUntilElementIsVisible(invalidPasswordRepeat);
+        return invalidPasswordRepeat.isDisplayed();
+    }
+
+    public void clickOkOnDialog(){
+        okBtnOnSuccessDialog.click();
+    }
+
+    public String getialogText(){
+        String actualText = successfulnMsgText.getText();
+        return actualText;
     }
 
 
