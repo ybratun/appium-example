@@ -9,6 +9,7 @@ Set up your connection with gitlab / github using SSH key.
 
 Everything necessary to start with Appium and the project 
 - Install npm, IntelliJ
+- install GitLab Runner
 
 - Clone & Open the Project in IntelliJ
 - Build the Project 
@@ -27,7 +28,7 @@ ExerciseAppium
 
 ## To view locally Allure reports:
 
-Run server locally, in Power Shell:
+Run server locally, for that in Power Shell:
 cd .\target\site\allure-maven-plugin
 python -m http.server 8080
 
