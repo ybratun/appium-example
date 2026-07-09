@@ -46,12 +46,13 @@ public class LoginScreen extends BaseScreen{
 
     public boolean loginTabShown(){
         waitUntilElementIsVisible(loginTab);
-        return loginTab.isDisplayed();
+        boolean isRepeatPasswordDisplayed = confirmPassword.isDisplayed();
+        return  isRepeatPasswordDisplayed;
     }
 
     public boolean signUpTabShown(){
         waitUntilElementIsVisible(signUpTab);
-        return signUpTab.isDisplayed();
+        return confirmPassword.isDisplayed();
     }
 
     public void clickOnLoginTab(){

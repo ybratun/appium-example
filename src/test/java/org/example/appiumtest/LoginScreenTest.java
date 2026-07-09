@@ -8,6 +8,7 @@ import screens.DragAndDropSceen;
 import screens.LoginScreen;
 import screens.NavigationBarScreen;
 
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class LoginScreenTest extends BaseTest{
@@ -34,11 +35,11 @@ public class LoginScreenTest extends BaseTest{
         NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
 
         navigationBarScreen.openLoginScreen();
-        assertTrue(loginScreen.loginTabShown());
+        assertFalse(loginScreen.loginTabShown());
         loginScreen.clickOnSignUpTab();
         assertTrue(loginScreen.signUpTabShown());
         loginScreen.clickOnLoginTab();
-        assertTrue(loginScreen.loginTabShown());
+        assertFalse(loginScreen.loginTabShown());
 
     }
 
@@ -61,7 +62,7 @@ public class LoginScreenTest extends BaseTest{
     @Story("LoginTab Interaction")
     @Test(description = "Test to validate login Tab contains expected elements")
     @Description("Validates login Tab contains expected elements")
-    public void suceessMsgOnCorrectSignUpalues() throws InterruptedException {
+    public void sucessMsgOnCorrectSignUpalues() throws InterruptedException {
         LoginScreen loginScreen = new LoginScreen();
         NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
 
