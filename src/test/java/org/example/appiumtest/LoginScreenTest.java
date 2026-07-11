@@ -3,6 +3,7 @@ package org.example.appiumtest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import screens.DragAndDropSceen;
 import screens.LoginScreen;
@@ -35,11 +36,11 @@ public class LoginScreenTest extends BaseTest{
         NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
 
         navigationBarScreen.openLoginScreen();
-        assertFalse(loginScreen.loginTabShown());
+        assertTrue(loginScreen.loginTabShown());
         loginScreen.clickOnSignUpTab();
         assertTrue(loginScreen.signUpTabShown());
         loginScreen.clickOnLoginTab();
-        assertFalse(loginScreen.loginTabShown());
+        assertTrue(loginScreen.loginTabShown());
 
     }
 
@@ -73,5 +74,34 @@ public class LoginScreenTest extends BaseTest{
         loginScreen.setRepeatPassword();
         loginScreen.clickSignUp();
         assertTrue(loginScreen.successMsgIsShown());
+    }
+
+    // defined collection of invalid emails here
+    @DataProvider(name = "invalidEmails")
+    public Object[][] invalidEmailProvider() {
+        return new Object[][] {
+                { "test@test." },       // Missing top-level domain
+                { "plainaddress" },     // Missing @ and domain
+                { "@missinguser.com" }, // Missing username
+                { "test@test@test.com" },// Multiple @ signs
+                { "test space@test.com" }// Contains invalid characters/spaces
+        };
+    }
+
+    @Feature("LoginTab")
+    @Story("LoginTab Interaction")
+    @Test(description = "Test to validate login Tab contains expected elements",
+    dataProvider = "invalidEmails")
+    @Description("Validates login Tab contains expected elements")
+    public void errorOnIncorrectEmailLogin(String invalidEmail) throws InterruptedException {
+        LoginScreen loginScreen = new LoginScreen();
+        NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
+
+        navigationBarScreen.openLoginScreen();
+        loginScreen.setEmail(invalidEmail);
+        loginScreen.setPassword("12345678");
+        loginScreen.clickLogin();
+        assertTrue(loginScreen.emailErrorIsShown(),
+                "Expected an error message to be visible for email: " + invalidEmail);
     }
 }
