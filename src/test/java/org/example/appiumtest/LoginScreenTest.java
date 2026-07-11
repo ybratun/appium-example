@@ -63,7 +63,7 @@ public class LoginScreenTest extends BaseTest{
     @Story("LoginTab Interaction")
     @Test(description = "Test to validate login Tab contains expected elements")
     @Description("Validates login Tab contains expected elements")
-    public void sucessMsgOnCorrectSignUpalues() throws InterruptedException {
+    public void sucessMsgOnCorrectSignUpValues() throws InterruptedException {
         LoginScreen loginScreen = new LoginScreen();
         NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
 
@@ -76,7 +76,7 @@ public class LoginScreenTest extends BaseTest{
         assertTrue(loginScreen.successMsgIsShown());
     }
 
-    // defined collection of invalid emails here
+    // defined collection of invalid emails here, TestNG DataPRovide pattern
     @DataProvider(name = "invalidEmails")
     public Object[][] invalidEmailProvider() {
         return new Object[][] {
@@ -90,9 +90,9 @@ public class LoginScreenTest extends BaseTest{
 
     @Feature("LoginTab")
     @Story("LoginTab Interaction")
-    @Test(description = "Test to validate login Tab contains expected elements",
+    @Test(description = "Test to validate error on incorrect email during login",
     dataProvider = "invalidEmails")
-    @Description("Validates login Tab contains expected elements")
+    @Description("Validates error on incorrect email during login")
     public void errorOnIncorrectEmailLogin(String invalidEmail) throws InterruptedException {
         LoginScreen loginScreen = new LoginScreen();
         NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
@@ -103,5 +103,30 @@ public class LoginScreenTest extends BaseTest{
         loginScreen.clickLogin();
         assertTrue(loginScreen.emailErrorIsShown(),
                 "Expected an error message to be visible for email: " + invalidEmail);
+    }
+
+    @DataProvider(name = "invalidPasswords")
+    public Object[][] invalidPasswordProvider() {
+        return new Object[][] {
+                { "1234567" },       // less than eight
+                { "     " }      // empty spaces
+        };
+    }
+
+    @Feature("LoginTab")
+    @Story("LoginTab Interaction")
+    @Test(description = "Test to validate error on incorrect password during login",
+            dataProvider = "invalidPasswords")
+    @Description("Validates error on incorrect password during login")
+    public void errorOnIncorrectPasswordLogin(String invalidPassword) throws InterruptedException {
+        LoginScreen loginScreen = new LoginScreen();
+        NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
+
+        navigationBarScreen.openLoginScreen();
+        loginScreen.setEmail("test@test.com");
+        loginScreen.setPassword(invalidPassword);
+        loginScreen.clickLogin();
+        assertTrue(loginScreen.passwordErrorIsShown(),
+                "Expected an error message to be visible for password: " + invalidPassword);
     }
 }
