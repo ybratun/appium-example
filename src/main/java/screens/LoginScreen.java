@@ -35,7 +35,7 @@ public class LoginScreen extends BaseScreen{
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Please enter the same password']")
     WebElement invalidPasswordRepeat;
 
-    @AndroidFindBy(accessibility = "button-SIGN UP")
+    @AndroidFindBy(id = "com.wdiodemoapp:id/parentPanel")
     WebElement successfulDialogLayout;
 
     @AndroidFindBy(id = "android:id/button1")
@@ -51,6 +51,11 @@ public class LoginScreen extends BaseScreen{
 
     public boolean signUpTabShown(){
         waitUntilElementIsVisible(signUpTab);
+        return confirmPassword.isDisplayed();
+    }
+
+    public boolean repeatPasswordIsShown(){
+        waitUntilElementIsVisible(confirmPassword);
         return confirmPassword.isDisplayed();
     }
 
@@ -78,8 +83,14 @@ public class LoginScreen extends BaseScreen{
 
     public void setRepeatPassword(){
         confirmPassword.click();
-        password.clear();
+        confirmPassword.clear();
         confirmPassword.sendKeys(passwordValue);
+    }
+
+    public void setCustomRepeatPassword(String inputRepeatPassword){
+        confirmPassword.click();
+        confirmPassword.clear();
+        confirmPassword.sendKeys(inputRepeatPassword);
     }
 
     public void clickLogin(){

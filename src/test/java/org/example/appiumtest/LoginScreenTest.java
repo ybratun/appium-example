@@ -14,12 +14,6 @@ import static org.testng.Assert.assertTrue;
 
 public class LoginScreenTest extends BaseTest{
 
-    // validation that in email password and repeat password set stub text value
-    //Login
-    // enter invalid password
-    // enter invalid values into login
-    // enter expected format value into login and validate successful message
-
     // Sign up
     // when email format is incorrect
     // when password value incorrect
@@ -128,5 +122,66 @@ public class LoginScreenTest extends BaseTest{
         loginScreen.clickLogin();
         assertTrue(loginScreen.passwordErrorIsShown(),
                 "Expected an error message to be visible for password: " + invalidPassword);
+    }
+
+    // SignUp tests
+
+    @Feature("SignUpTab")
+    @Story("SignUpTab Interaction")
+    @Test(description = "Test to validate error on incorrect email during signUp",
+            dataProvider = "invalidEmails")
+    @Description("Validates error on incorrect email during signUp")
+    public void errorOnIncorrectEmailSignUp(String invalidEmail) throws InterruptedException {
+        LoginScreen loginScreen = new LoginScreen();
+        NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
+
+        navigationBarScreen.openLoginScreen();
+        loginScreen.clickOnSignUpTab();
+
+        loginScreen.setEmail(invalidEmail);
+        loginScreen.setPassword("12345678");
+        loginScreen.setRepeatPassword();
+        loginScreen.clickSignUp();
+        assertTrue(loginScreen.emailErrorIsShown(),
+                "Expected an error message to be visible for email: " + invalidEmail);
+    }
+
+    @Feature("SignUpTab")
+    @Story("SignUpTab Interaction")
+    @Test(description = "Test to validate error on incorrect password during sign up",
+            dataProvider = "invalidPasswords")
+    @Description("Validates error on incorrect password during sign up")
+    public void errorOnIncorrectPasswordSignUp(String invalidPassword) throws InterruptedException {
+        LoginScreen loginScreen = new LoginScreen();
+        NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
+
+        navigationBarScreen.openLoginScreen();
+        loginScreen.clickOnSignUpTab();
+
+        loginScreen.setEmail("test@test.com");
+        loginScreen.setPassword(invalidPassword);
+        loginScreen.setRepeatPassword();
+        loginScreen.clickSignUp();
+        assertTrue(loginScreen.passwordErrorIsShown(),
+                "Expected an error message to be visible for password: " + invalidPassword);
+    }
+
+    @Feature("SignUpTab")
+    @Story("SignUpTab Interaction")
+    @Test(description = "Test to validate error on incorrect repeated password during sign up",
+            dataProvider = "invalidPasswords")
+    @Description("Validates error on incorrect password during sign up")
+    public void errorOnIncorrectRepeatPasswordSignUp(String invalidPassword) throws InterruptedException {
+        LoginScreen loginScreen = new LoginScreen();
+        NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
+
+        navigationBarScreen.openLoginScreen();
+        loginScreen.clickOnSignUpTab();
+
+        loginScreen.setEmail("test@test.com");
+        loginScreen.setPassword("12345678");
+        loginScreen.setCustomRepeatPassword(invalidPassword);
+        loginScreen.clickSignUp();
+        assertTrue(loginScreen.repeatPasswordErrorIsShown());
     }
 }
