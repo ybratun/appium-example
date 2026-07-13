@@ -18,6 +18,13 @@ public class NavigationBarScreen extends BaseScreen {
     @AndroidFindBy (accessibility = "Login")
     WebElement loginTab;
 
+    @AndroidFindBy(accessibility = "Menu")
+    WebElement menuTab;
+
+    public void openMenuTab()  {
+        waitUntilElementIsClickable(menuTab);
+        click(menuTab);
+    }
     public void openFormsScreen()  {
         waitUntilElementIsClickable(formsTab);
         click(formsTab);

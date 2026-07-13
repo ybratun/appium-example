@@ -5,21 +5,12 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import screens.DragAndDropSceen;
 import screens.LoginScreen;
 import screens.NavigationBarScreen;
 
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class LoginScreenTest extends BaseTest{
-
-    // Sign up
-    // when email format is incorrect
-    // when password value incorrect
-    // message when repeated password is invalid
-    // successful sign up
-
 
     @Feature("LoginTab")
     @Story("LoginTab Interaction")
@@ -42,7 +33,7 @@ public class LoginScreenTest extends BaseTest{
     @Story("LoginTab Interaction")
     @Test(description = "Test to validate login Tab contains expected elements")
     @Description("Validates login Tab contains expected elements")
-    public void suceessMsgOnCorrectLoginValues() throws InterruptedException {
+    public void successMsgOnCorrectLoginValues() throws InterruptedException {
         LoginScreen loginScreen = new LoginScreen();
         NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
 
@@ -57,7 +48,7 @@ public class LoginScreenTest extends BaseTest{
     @Story("LoginTab Interaction")
     @Test(description = "Test to validate login Tab contains expected elements")
     @Description("Validates login Tab contains expected elements")
-    public void sucessMsgOnCorrectSignUpValues() throws InterruptedException {
+    public void successMsgOnCorrectSignUpValues() throws InterruptedException {
         LoginScreen loginScreen = new LoginScreen();
         NavigationBarScreen navigationBarScreen = new NavigationBarScreen();
 

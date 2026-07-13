@@ -42,7 +42,7 @@ public class LoginScreen extends BaseScreen{
     WebElement okBtnOnSuccessDialog;
 
     @AndroidFindBy(id = "android:id/message") // Login -> "You are logged in!"     SignUp -> "You successfully signed up!"
-    WebElement successfulnMsgText;
+    WebElement successfulMsgText;
 
     public boolean loginTabShown(){
         waitUntilElementIsVisible(loginTab);
@@ -127,7 +127,7 @@ public class LoginScreen extends BaseScreen{
     }
 
     public String getialogText(){
-        String actualText = successfulnMsgText.getText();
+        String actualText = successfulMsgText.getText();
         return actualText;
     }
 

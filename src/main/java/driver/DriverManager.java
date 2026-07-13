@@ -12,7 +12,7 @@ public class DriverManager {
     private static ThreadLocal<AppiumDriver> driver = new ThreadLocal<>();
 
     public static void initDriver() throws MalformedURLException {
-        String appPath = Paths.get(System.getProperty("user.dir"),"src","test","resources","android.wdio.native.app.v2.0.0.apk").toString();
+        String appPath = Paths.get(System.getProperty("user.dir"),"src","test","resources","android.wdio.native.app.v2.2.0.apk").toString();
 
         DesiredCapabilities caps = new DesiredCapabilities();
 
