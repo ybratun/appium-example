@@ -29,4 +29,40 @@ public class MenuScreen extends BaseScreen{
     @AndroidFindBy(accessibility = "side-menu-item-data-management")
     WebElement dataMenuEntry;
 
+    public boolean elementIsDisplayed(WebElement element) {
+        waitUntilElementIsVisible(element);
+        return element.isDisplayed();
+    }
+
+    public void assertAllElementsAreShown(WebElement... elements) {
+
+        for (WebElement element : elements) {
+            try {
+                waitUntilElementIsVisible(element);
+
+                // Extra safety assertion
+                elementIsDisplayed(element);
+            } catch (Exception e) {
+                // Throws a clear assertion failure showing which element failed
+                throw new AssertionError("Validation failed! Element is not shown: "
+                        + element.toString(), e);
+            }
+        }
+    }
+
+    public void verifyMenuIsComplete() {
+
+        assertAllElementsAreShown(
+                homeMenuEntry,
+                webViewMenuEntry,
+                loginMenuEntry,
+                formsMenuEntry,
+                swipeMenuEntry,
+                dragMenuEntry,
+                permissionsMenuEntry,
+                dataMenuEntry
+
+        );
+    }
+
 }
