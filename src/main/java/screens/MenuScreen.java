@@ -29,9 +29,17 @@ public class MenuScreen extends BaseScreen{
     @AndroidFindBy(accessibility = "side-menu-item-data-management")
     WebElement dataMenuEntry;
 
+    @AndroidFindBy(accessibility = "tab-side-menu-panel")
+    WebElement tabPanel;
+
     public boolean elementIsDisplayed(WebElement element) {
         waitUntilElementIsVisible(element);
         return element.isDisplayed();
+    }
+
+    public boolean sidePanelIsDisplayed(){
+        waitUntilElementIsVisible(tabPanel);
+        return elementIsDisplayed(tabPanel);
     }
 
     public void assertAllElementsAreShown(WebElement... elements) {
@@ -63,6 +71,35 @@ public class MenuScreen extends BaseScreen{
                 dataMenuEntry
 
         );
+    }
+
+    public void clickwebViewMenuEntry (){
+        waitUntilElementIsVisible(webViewMenuEntry);
+        webViewMenuEntry.click();
+    }
+    public void clickloginMenuEntry (){
+        waitUntilElementIsVisible(loginMenuEntry);
+        loginMenuEntry.click();
+    }
+    public void clickformsMenuEntry (){
+        waitUntilElementIsVisible(formsMenuEntry);
+        formsMenuEntry.click();
+    }
+    public void clickswipeMenuEntry (){
+        waitUntilElementIsVisible(swipeMenuEntry);
+        swipeMenuEntry.click();
+    }
+    public void clickdragMenuEntry (){
+        waitUntilElementIsVisible(dragMenuEntry);
+        dragMenuEntry.click();
+    }
+    public void clickpermissionsMenuEntry (){
+        waitUntilElementIsVisible(permissionsMenuEntry);
+        permissionsMenuEntry.click();
+    }
+    public void clickdataMenuEntry (){
+        waitUntilElementIsVisible(dataMenuEntry);
+        dataMenuEntry.click();
     }
 
 }
